@@ -1,0 +1,20 @@
+{
+  "name": "vitostan",
+  "version": "1.0.0",
+  "description": "o_O\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitostan/vitostan.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vitostan/vitostan/issues"
+  },
+  "homepage": "https://github.com/vitostan/vitostan#readme"
+}
