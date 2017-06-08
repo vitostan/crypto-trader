@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/vitostan/vitostan#readme",
   "dependencies": {
-    "node-rest-client": "^3.1.0"
+    "crypto": "0.0.3",
+    "node-rest-client": "^3.1.0",
+    "request": "^2.81.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
