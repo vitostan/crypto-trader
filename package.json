@@ -4,28 +4,39 @@
   "description": "o_O\"",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "./node_modules/babel-cli/bin/babel.js src/main.js --watch --out-file src/main_compiled.js",
+    "start": "node src/main_compiled.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vitostan/vitostan.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Vitostan",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/vitostan/vitostan/issues"
   },
   "homepage": "https://github.com/vitostan/vitostan#readme",
   "dependencies": {
+    "async-request": "^1.2.0",
     "crypto": "0.0.3",
-    "node-rest-client": "^3.1.0",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
+    "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.5.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2017": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.24.1"
+  },
+  "babel": {
+    "presets": [
+      "es2017"
+    ]
   }
 }
