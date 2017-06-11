@@ -4,7 +4,7 @@
   "description": "o_O\"",
   "main": "index.js",
   "scripts": {
-    "hotbuild": "./node_modules/.bin/webpack --watch --config webpack.config.js",
+    "hotbuild": "./node_modules/.bin/webpack --config webpack.config.js --watch",
     "start": "node src/generate/app.bundle.js"
   },
   "repository": {
@@ -22,7 +22,7 @@
     "async-request": "^1.2.0",
     "crypto": "0.0.3",
     "lodash": "^4.17.4",
-    "request": "^2.81.0",
+    "request": "^2.79.0",
     "request-promise": "^4.2.1"
   },
   "devDependencies": {
