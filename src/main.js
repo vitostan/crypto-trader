@@ -5,6 +5,7 @@ var result;
 
 async function main() {
   try {
+    console.log('apiType = ', apiType);
     result = await callApi(apiType.getBalance);
     console.log(result);
   } catch (e) {

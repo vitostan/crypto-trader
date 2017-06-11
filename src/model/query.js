@@ -4,7 +4,7 @@ var passAuth = require('./auth.js');
 
 const query = {
   method: 'GET',
-  body: JSON.sringify({
+  body: JSON.stringify({
     //   product_code: 'BTC_JPY',
     //   child_order_type: 'LIMIT',
     //   side: 'BUY',

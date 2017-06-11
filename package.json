@@ -4,7 +4,7 @@
   "description": "o_O\"",
   "main": "index.js",
   "scripts": {
-    "watch": "./node_modules/babel-cli/bin/babel.js src/main.js --watch --out-file src/main_compiled.js",
+    "watch": "./node_modules/babel-cli/bin/babel.js src/main.js --watch --out-file src/generate/main_compiled.js --presets=es2015,stage-0,es2017",
     "start": "node src/main_compiled.js"
   },
   "repository": {
@@ -36,7 +36,7 @@
   },
   "babel": {
     "presets": [
-      "es2017"
+      "es2015", "stage-0", "es2017"
     ]
   }
 }
