@@ -4,8 +4,10 @@
   "description": "o_O\"",
   "main": "index.js",
   "scripts": {
-    "watch": "./node_modules/babel-cli/bin/babel.js src/main.js --watch --out-file src/generate/main_compiled.js --presets=es2015,stage-0,es2017",
-    "start": "node src/main_compiled.js"
+    "hotbuild": "./node_modules/babel-cli/bin/babel.js src/main.js --watch --out-file src/generate/main_compiled.js --presets=es2015,stage-0,es2017",
+    "hotbuild_scratch": "./node_modules/babel-cli/bin/babel.js src/main_scratch.js --watch --out-file src/generate/main_scratch_compiled.js --presets=es2017",
+    "start": "node src/generate/main_compiled.js",
+    "start_scratch": "node src/generate/main_scratch_compiled.js"
   },
   "repository": {
     "type": "git",
@@ -36,7 +38,7 @@
   },
   "babel": {
     "presets": [
-      "es2015", "stage-0", "es2017"
+      "es2017"
     ]
   }
 }
