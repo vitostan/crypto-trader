@@ -1,10 +1,8 @@
-var crypto = require('crypto');
+import crypto from 'crypto';
 
-function passAuth(method, pathPrefix, apiType, body) {
-  var key = 'SRuasFmzd3a2RwK4HtZhZW';
-  var secret = 'ob0K0iEvt+RJM4F4qUCrPL6zFdqaQPJagJ7WD9ej64s=';
+export default function getReqHeaderByAuth(key, secret, method, pathPrefix, apiAction, body) {
   var timestamp = Date.now().toString();
-  var text = timestamp + method + pathPrefix + apiType + body;
+  var text = timestamp + method + pathPrefix + apiAction + body;
   var sign = crypto.createHmac('sha256', secret).update(text).digest('hex');
   return {
     'ACCESS-KEY': key,

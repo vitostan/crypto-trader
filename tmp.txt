@@ -1,1 +1,0 @@
-//"hotbuild": "./node_modules/babel-cli/bin/babel.js src/main.js --watch --out-file src/generate/main_compiled.js --presets=es2015,stage-0,es2017",

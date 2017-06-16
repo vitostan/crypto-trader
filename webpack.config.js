@@ -1,7 +1,7 @@
 var path = require('path');
 
 module.exports = {
-  entry: './src/main_scratch.js',
+  entry: './src/main.js',
   output: {
     filename: 'app.bundle.js',
     path: path.resolve(__dirname, 'src/generate')
