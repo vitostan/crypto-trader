@@ -6,12 +6,21 @@ import {
   GET_HISTORY
 } from '../model/apiAction.js';
 
-export function buildRequestParam(host, pathPrefix, apiAction, method, body, key, secret) {
+export function buildGetRequestParam(host, pathPrefix, apiAction, key, secret) {
   return {
     url: host + pathPrefix + apiAction,
-    method: method,
+    method: 'GET',
+    body: '',
+    headers: getReqHeaderByAuth(key, secret, 'GET', pathPrefix, apiAction, '')
+  };
+}
+
+export function buildPostRequestParam(host, pathPrefix, apiAction, body, key, secret) {
+  return {
+    url: host + pathPrefix + apiAction,
+    method: 'POST',
     body: body,
-    headers: getReqHeaderByAuth(key, secret, method, pathPrefix, apiAction, body)
+    headers: getReqHeaderByAuth(key, secret, 'POST', pathPrefix, apiAction, body)
   };
 }
 
