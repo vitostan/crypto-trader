@@ -1,5 +1,5 @@
 import request from 'request-promise';
-import getReqHeaderByAuth from './auth.js';
+import getReqHeaderByAuth from '../util';
 import {
   GET_BALANCE,
   GET_MARGIN_STATUS,

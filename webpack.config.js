@@ -4,7 +4,7 @@ module.exports = {
   entry: './src/main.js',
   output: {
     filename: 'app.bundle.js',
-    path: path.resolve(__dirname, 'src/generate')
+    path: path.resolve(__dirname, 'bundle')
   },
   module: {
     rules: [{

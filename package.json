@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "hotbuild": "./node_modules/.bin/webpack --progress --debug --watch --config webpack.config.js --display-chunks",
-    "start": "node src/generate/app.bundle.js"
+    "start": "node bundle/app.bundle.js"
   },
   "repository": {
     "type": "git",
