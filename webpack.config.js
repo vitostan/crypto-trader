@@ -18,5 +18,5 @@ module.exports = {
       }
     }]
   },
-  target: 'node'
+  target: 'async-node'
 };
