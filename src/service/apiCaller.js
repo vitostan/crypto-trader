@@ -10,7 +10,6 @@ export function buildGetRequestParam(host, pathPrefix, apiAction, key, secret) {
   return {
     url: host + pathPrefix + apiAction,
     method: 'GET',
-    body: '',
     headers: getReqHeaderByAuth(key, secret, 'GET', pathPrefix, apiAction, '')
   };
 }
@@ -19,8 +18,9 @@ export function buildPostRequestParam(host, pathPrefix, apiAction, body, key, se
   return {
     url: host + pathPrefix + apiAction,
     method: 'POST',
+    headers: getReqHeaderByAuth(key, secret, 'POST', pathPrefix, apiAction, body),
     body: body,
-    headers: getReqHeaderByAuth(key, secret, 'POST', pathPrefix, apiAction, body)
+    json: true
   };
 }
 
