@@ -1,23 +1,36 @@
 import {
-  HOST,
-  PATH_PREFIX,
-  KEY,
-  SECRET
-} from './model/apiProfile.js';
+  GET_BALANCE,
+  GET_MARKET_LIST,
+  GET_BOARD,
+  GET_MARGIN,
+  GET_BANK_ACCOUNTS
+} from './feature/inquiry';
 import {
-  GET_BALANCE
-} from './model/apiAction.js';
-import {
-  buildGetRequestParam,
   callApi
-} from './service/apiCaller.js'
+} from './util';
 
 async function main() {
   try {
-    var apiAction = GET_BALANCE; //getcollateral, getexecutions
-    var requestParam = buildGetRequestParam(HOST, PATH_PREFIX, apiAction, KEY, SECRET);
-    var result = await callApi(requestParam, apiAction);
-    console.log('result = ', result);
+    // var marketList = await callApi(GET_MARKET_LIST);
+    // console.log('==============================');
+    // console.log('Market List = ', marketList);
+    // console.log('==============================');
+    // console.log('\n');
+    // var balance = await callApi(GET_BALANCE);
+    // console.log('==============================');
+    // console.log('Balance = ', balance);
+    // console.log('==============================');
+    // console.log('\n');
+    // var margin = await callApi(GET_MARGIN);
+    // console.log('==============================');
+    // console.log('Margin = ', margin);
+    // console.log('==============================');
+    // console.log('\n');
+    var bankAccounts = await callApi(GET_BANK_ACCOUNTS);
+    console.log('==============================');
+    console.log('bankAccounts = ', bankAccounts);
+    console.log('==============================');
+    console.log('\n');
   } catch (e) {
     console.log('exception = ', e);
   }

@@ -1,3 +1,7 @@
-import auth from './auth.js';
+import {
+  callApi
+} from './apiCaller.js';
 
-export default auth;
+export {
+  callApi
+};

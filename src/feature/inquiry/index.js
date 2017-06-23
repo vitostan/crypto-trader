@@ -1,1 +1,1 @@
-//inquiry
+export * from './apiAction.js';
