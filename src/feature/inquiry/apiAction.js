@@ -1,6 +1,7 @@
 //public
 export const GET_MARKET_LIST = '/v1/getmarkets';
 export const GET_BOARD = '/v1/getboard';
+export const GET_TICKER = '/v1/getticker';
 //private
 export const GET_BALANCE = '/v1/me/getbalance';
 export const GET_MARGIN = '/v1/me/getcollateral';

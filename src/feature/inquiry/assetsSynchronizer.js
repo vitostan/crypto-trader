@@ -1,9 +1,10 @@
-import {
-  GET_BALANCE
-} from './apiAction.js';
+import moment from 'moment-timezone';
 import {
   callApi
 } from '../../util';
+import {
+  GET_BALANCE
+} from './apiAction.js';
 import assets from './assets.js';
 
 export default function syncAssets() {
@@ -30,12 +31,14 @@ async function updateAssets() {
         break;
     }
   }
-  let datetime = new Date()
-  console.log('Time: ', datetime);
+  let datetime = new Date();
+  let jstDateTime = moment(datetime).tz('Asia/Tokyo').format('YYYY-MM-DD HH:mm:ss(z)');
+  console.log('Time: ', jstDateTime);
   console.log('assets.JPY = ', assets.JPY);
   console.log('assets.BTC = ', assets.BTC);
   console.log('assets.ETH = ', assets.ETH);
   console.log('============================');
   console.log('');
+  jstDateTime = undefined;
   datetime = undefined;
 }

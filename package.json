@@ -12,7 +12,9 @@
     "type": "git",
     "url": "git+https://github.com/vitostan/vitostan.git"
   },
-  "keywords": ["vitostan"],
+  "keywords": [
+    "vitostan"
+  ],
   "author": "Vitostan",
   "license": "ISC",
   "bugs": {
@@ -22,6 +24,8 @@
   "dependencies": {
     "crypto": "0.0.3",
     "lodash": "^4.17.4",
+    "moment": "^2.18.1",
+    "moment-timezone": "^0.5.13",
     "request": "^2.81.0",
     "request-promise": "^4.2.1"
   },
