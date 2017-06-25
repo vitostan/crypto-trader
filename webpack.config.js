@@ -1,9 +1,12 @@
 var path = require('path');
 
 module.exports = {
-  entry: './src/main.js',
+  entry: {
+    app: './src/main.js',
+    sync: './src/sync.js'
+  },
   output: {
-    filename: 'app.bundle.js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'bundle')
   },
   module: {
