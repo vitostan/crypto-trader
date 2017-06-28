@@ -28,7 +28,7 @@ async function checkTradingCondition(worker) {
 
 
 async function trade() {
-  for (var worker from workers) {
+  for (var worker of workers) {
     if (worker.needInit) {
       initWorker(worker);
     }
