@@ -9,7 +9,7 @@ import assets from './assets.js';
 
 export default function syncAssets() {
   try {
-    let syncAssetsTimer = setInterval(updateAssets, 5000);
+    let syncAssetsTimer = setInterval(updateAssets, 10000);
   } catch (e) {
     console.log('error = ', e);
   }

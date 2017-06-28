@@ -8,17 +8,19 @@ import {
 } from '../inquiry';
 
 export default function autoTrade() {
-  let checkTradingConditionTimer = setInterval(checkTradingCondition, 5000);
+  let checkTradingConditionTimer = setInterval(checkTradingCondition, 1000);
 }
 
 async function checkTradingCondition() {
   // let orderBook = await callApi(GET_BOARD);
-  let tickerString = await callApi(GET_TICKER);
+  let tickerString = await callApi(GET_TICKER, {
+    product_code: 'ETH_BTC'
+  });
   let ticker = JSON.parse(tickerString);
   let datetime = new Date();
   let jstDatetime = moment(datetime).tz('Asia/Tokyo').format('YYYY-MM-DD HH:mm:ss(z)');
   console.log('Time = ', jstDatetime);
-  console.log('last trading price = ', ticker.ltp);
+  console.log('BTC_JPY: last trading price = ', ticker.ltp);
   console.log('============================');
   console.log('');
   jstDatetime = undefined;

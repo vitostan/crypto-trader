@@ -8,20 +8,21 @@ import {
   SECRET
 } from './apiProfile.js';
 
-export async function callApi(apiAction, body) {
+export async function callApi(apiAction, queryString, body) {
   let requestParam;
   if (body && body.length > 0) {
     requestParam = buildPostRequestParam(apiAction, body);
   } else {
-    requestParam = buildGetRequestParam(apiAction);
+    requestParam = buildGetRequestParam(apiAction, queryString);
   }
   return await request(requestParam);
 }
 
-function buildGetRequestParam(apiAction) {
+function buildGetRequestParam(apiAction, queryString) {
   return {
     url: HOST + apiAction,
-    headers: getReqHeaderByAuth(KEY, SECRET, 'GET', apiAction, '')
+    headers: getReqHeaderByAuth(KEY, SECRET, 'GET', apiAction, ''),
+    qs: queryString
   };
 }
 
