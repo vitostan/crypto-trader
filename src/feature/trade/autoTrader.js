@@ -16,7 +16,6 @@ export default function autoTrade() {
 }
 
 async function checkTradingCondition(worker) {
-  // let orderBook = await callApi(GET_BOARD);
   let tickerString = await callApi(GET_TICKER, {
     product_code: 'BTC_JPY'
   });
@@ -32,8 +31,9 @@ async function trade() {
     if (worker.needInit) {
       initWorker(worker);
     }
-    if checkTradingCondition(worker) {}
-
+    if (checkTradingCondition(worker)) {
+      executeTrade();
+    }
   }
 }
 
@@ -44,6 +44,10 @@ function initWorker(worker) {
     virtualAssets: 0, //BTC/ETH
     buyingPrice: 0, //
     sellingPrice: 0,
-    feeRatio: 0
+    feeRatio: 0.15 / 100
   }
+}
+
+function executeTrade() {
+  console.log('trade executed');
 }

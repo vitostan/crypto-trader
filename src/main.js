@@ -1,10 +1,11 @@
 import {
-  autoTrade
+  autoTrade,
+  monitorRealtimePrice
 } from './feature/trade';
 
 function main() {
   try {
-    autoTrade();
+    monitorRealtimePrice();
   } catch (e) {
     console.log('exception = ', e);
   }
