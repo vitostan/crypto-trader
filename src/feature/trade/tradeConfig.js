@@ -1,1 +1,1 @@
-export const GAIN_PROFIT_RATIO = 0.3;
+export const GAIN_PROFIT_RATIO = 0.3015;

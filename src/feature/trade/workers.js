@@ -2,11 +2,12 @@ var workers = [];
 for (var x = 0; x < 10; x++) {
   var worker = {
     needInit: true,
-    cashAssets: 0, //JPY/CNY
-    virtualAssets: 0, //BTC/ETH
-    buyingPrice: 0, //
+    cashAssets: 0, //JPY
+    virtualAssets: 0, //BTC
+    buyingPrice: 0,
+    buyingAmount: 0, //BTC
     sellingPrice: 0,
-    feeRatio: 0
+    sellingAmount: 0 //BTC
   }
   workers.push(worker);
 }
