@@ -2,6 +2,6 @@ import {
   GET_EXECUTIONS
 } from './apiAction.js';
 
-export function sma() {
+export function sma(duration) {
 
 }
