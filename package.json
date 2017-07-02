@@ -7,6 +7,7 @@
     "hotbuild": "./node_modules/.bin/webpack --progress --debug --watch --config webpack.config.js --display-chunks",
     "start": "node bundle/app.bundle.js",
     "sync": "node bundle/sync.bundle.js",
+    "history": "node bundle/history.bundle.js",
     "server": "node bundle/server.bundle.js"
   },
   "repository": {

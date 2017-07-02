@@ -5,7 +5,7 @@ import {
 import {
   assets,
   GET_TICKER
-} from '../inquiry';
+} from '../synchronizer';
 import workers from './workers.js';
 import {
   GAIN_PROFIT_RATIO
@@ -24,7 +24,6 @@ async function checkTradingCondition(worker) {
     return true;
   return false;
 }
-
 
 async function trade() {
   for (var worker of workers) {

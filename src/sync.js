@@ -1,10 +1,11 @@
 import {
-  assetsSynchronizer
-} from './feature/inquiry';
+  autoSyncAssets,
+  manualSyncAssets
+} from './feature/synchronizer';
 
 function sync() {
   try {
-    assetsSynchronizer();
+    manualSyncAssets();
   } catch (e) {
     console.log('exception = ', e);
   }

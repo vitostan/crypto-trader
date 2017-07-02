@@ -7,9 +7,17 @@ import {
 } from './apiAction.js';
 import assets from './assets.js';
 
-export default function syncAssets() {
+export function autoSyncAssets() {
   try {
-    let syncAssetsTimer = setInterval(updateAssets, 10000);
+    let syncAssetsTimer = setInterval(updateAssets, 5000);
+  } catch (e) {
+    console.log('error = ', e);
+  }
+}
+
+export function manualSyncAssets() {
+  try {
+    updateAssets();
   } catch (e) {
     console.log('error = ', e);
   }

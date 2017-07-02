@@ -4,6 +4,7 @@ module.exports = {
   entry: {
     app: './src/main.js',
     sync: './src/sync.js',
+    history: './src/history.js',
     server: './src/server.js'
   },
   output: {
