@@ -8,6 +8,7 @@
     "start": "node bundle/app.bundle.js",
     "sync": "node bundle/sync.bundle.js",
     "history": "node bundle/history.bundle.js",
+    "cashout": "node bundle/cashout.bundle.js",
     "server": "node bundle/server.bundle.js"
   },
   "repository": {

@@ -1,12 +1,12 @@
 auto trade:
-- sync balance
-
-- for one worker,
-time to buy?
+2.Loop, for one worker
+2.1 sync balance
+2.2 time to buy?
 if 
-
-time to sell?
-if last trade price = 1.0715 * buying price
-send sell order as ticker.best_ask * 0.01
-
-- sync balance
+then buy: send buy order as ticker.best_bid * 0.01
+sync balance
+2.3if no buy, time to sell?
+if
+then sell: send sell order as ticker.best_ask * 0.01
+sync balance
+2.4generate report
