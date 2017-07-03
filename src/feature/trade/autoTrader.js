@@ -5,7 +5,7 @@ import {
 import {
   assets,
   GET_TICKER
-} from '../synchronizer';
+} from '../sync';
 import workers from './workers.js';
 import {
   GAIN_PROFIT_RATIO

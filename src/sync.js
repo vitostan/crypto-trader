@@ -1,7 +1,7 @@
 import {
   autoSyncAssets,
   manualSyncAssets
-} from './feature/synchronizer';
+} from './feature/sync';
 
 function sync() {
   try {

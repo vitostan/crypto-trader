@@ -4,7 +4,7 @@ import {
 } from '../../util';
 import {
   GET_TICKER
-} from '../synchronizer';
+} from '../sync';
 import {
   GET_BOARD
 } from './apiAction.js';
