@@ -1,5 +1,5 @@
 import {
-  currencyByJPY,
+  currency,
   currencyCode,
   getCurrencyBasedOn
 } from './util';
@@ -7,7 +7,7 @@ import {
 async function getCurrency() {
   try {
     await getCurrencyBasedOn(currencyCode.JPY);
-    console.log('currency = ', currencyByJPY);
+    console.log(currency);
   } catch (e) {
     console.log('exception = ', e);
   }

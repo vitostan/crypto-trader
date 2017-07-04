@@ -3,13 +3,13 @@ import {
 } from './apiCaller.js';
 import {
   currencyCode,
-  currencyByJPY,
+  currency,
   getCurrencyBasedOn
 } from './currency.js';
 
 export {
   callApi,
   currencyCode,
-  currencyByJPY,
+  currency,
   getCurrencyBasedOn
 };

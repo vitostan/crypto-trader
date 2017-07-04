@@ -1,6 +1,7 @@
+//API http://fixer.io/
 import request from 'request-promise';
 
-const HOST_FIXER = 'http://api.fixer.io';
+const HOST_FIXER = 'https://api.fixer.io';
 const GET_LATEST = '/latest';
 
 export const currencyCode = {
@@ -9,22 +10,17 @@ export const currencyCode = {
   USD: 'USD'
 };
 
-export var currencyByJPY = {
-  cny: 0,
-  usd: 0
-}
+export var currency = {};
 
 export async function getCurrencyBasedOn(baseCurrency) {
   let requestParam = {
     url: HOST_FIXER + GET_LATEST,
     qs: {
-      base: baseCurrency
+      base: baseCurrency,
+      symbols: currencyCode.CNY + ',' + currencyCode.USD
     }
   };
   let currStr = await request(requestParam);
   let currObj = JSON.parse(currStr);
-  currencyByJPY = {
-    cny: currObj.rates.CNY,
-    usd: currObj.rates.USD
-  };
+  currency = currObj;
 }
