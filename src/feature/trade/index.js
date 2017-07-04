@@ -1,9 +1,10 @@
 import autoTrade from './autoTrader.js';
-export {
+import {
   monitorRealtimePrice
 }
 from './marketBoard.js';
-export * from './apiAction.js';
+
 export {
-  autoTrade
+  autoTrade,
+  monitorRealtimePrice
 };

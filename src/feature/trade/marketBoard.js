@@ -6,9 +6,7 @@ import {
   getCurrencyBasedOn
 } from '../../util';
 import {
-  GET_TICKER
-} from '../sync';
-import {
+  GET_TICKER,
   GET_BOARD
 } from './apiAction.js';
 

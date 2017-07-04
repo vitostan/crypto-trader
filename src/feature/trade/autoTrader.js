@@ -3,9 +3,11 @@ import {
   callApi
 } from '../../util';
 import {
-  assets,
-  GET_TICKER
+  assets
 } from '../sync';
+import {
+  GET_TICKER
+} from './apiAction.js';
 import workers from './workers.js';
 import {
   GAIN_PROFIT_RATIO

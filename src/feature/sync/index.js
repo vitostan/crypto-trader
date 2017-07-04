@@ -2,9 +2,10 @@ import {
   autoSyncAssets,
   manualSyncAssets
 } from './assetsSynchronizer.js';
+import assets from './assets.js';
 
-export * from './apiAction.js';
 export {
+  assents,
   autoSyncAssets,
   manualSyncAssets
 };
