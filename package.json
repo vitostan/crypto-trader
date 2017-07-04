@@ -8,6 +8,7 @@
     "start": "node bundle/app.bundle.js",
     "sync": "node bundle/sync.bundle.js",
     "history": "node bundle/history.bundle.js",
+    "currency": "node bundle/currency.bundle.js",
     "server": "node bundle/server.bundle.js"
   },
   "repository": {

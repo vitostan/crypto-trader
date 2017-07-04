@@ -1,7 +1,15 @@
 import {
   callApi
 } from './apiCaller.js';
+import {
+  currencyCode,
+  currencyByJPY,
+  getCurrencyBasedOn
+} from './currency.js';
 
 export {
-  callApi
+  callApi,
+  currencyCode,
+  currencyByJPY,
+  getCurrencyBasedOn
 };

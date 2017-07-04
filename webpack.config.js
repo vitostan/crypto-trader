@@ -5,6 +5,7 @@ module.exports = {
     app: './src/main.js',
     sync: './src/sync.js',
     history: './src/history.js',
+    currency: './src/currency.js',
     server: './src/server.js'
   },
   output: {
