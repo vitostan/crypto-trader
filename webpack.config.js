@@ -1,12 +1,11 @@
-var path = require('path');
+let path = require('path');
 
 module.exports = {
   entry: {
-    app: './src/main.js',
+    trade: './src/trade.js',
     sync: './src/sync.js',
     history: './src/history.js',
-    cashout: './src/cashout.js',
-    currency: './src/currency.js',
+    withdraw: './src/withdraw.js',
     server: './src/server.js'
   },
   output: {

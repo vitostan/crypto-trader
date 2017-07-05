@@ -1,8 +1,8 @@
 import moment from 'moment-timezone';
 import {
   callApi,
+  now,
   currencyCode,
-  currency,
   getCurrencyBasedOn
 } from '../../util';
 import {
@@ -27,9 +27,9 @@ async function getLastTradePrice() {
     product_code: 'ETH_BTC'
   })
   let ethTicker = JSON.parse(ethTickerStr);
-  let now = moment().tz('Asia/Tokyo').format('MM-DD HH:mm:ss');
-  await getCurrencyBasedOn(currencyCode.JPY);
-  console.log('Time: ' + now + ' - bitFlyer Market:');
+  let time = now();
+  let currency = await getCurrencyBasedOn(currencyCode.JPY);
+  console.log('Time: ' + time + ' - bitFlyer Market');
   console.log('1 BTC = ' + btcTicker.ltp + ' JPY = ' + (btcTicker.ltp * currency.rates.CNY * 1.02).toFixed(2) + ' CNY');
   console.log('1 ETH = ' + (ethTicker.ltp * btcTicker.ltp).toFixed(0) + ' JPY = ' + (ethTicker.ltp * btcTicker.ltp * currency.rates.CNY * 1.02).toFixed(2) + ' CNY');
   console.log('--------------------------\n');

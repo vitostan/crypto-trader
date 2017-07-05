@@ -10,8 +10,6 @@ export const currencyCode = {
   USD: 'USD'
 };
 
-export var currency = {};
-
 export async function getCurrencyBasedOn(baseCurrency) {
   let requestParam = {
     url: HOST_FIXER + GET_LATEST,
@@ -20,7 +18,6 @@ export async function getCurrencyBasedOn(baseCurrency) {
       symbols: currencyCode.CNY + ',' + currencyCode.USD
     }
   };
-  let currStr = await request(requestParam);
-  let currObj = JSON.parse(currStr);
-  currency = currObj;
+  let currencyStr = await request(requestParam);
+  return JSON.parse(currencyStr);
 }

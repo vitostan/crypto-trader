@@ -2,14 +2,13 @@
   "name": "vitostan",
   "version": "1.0.0",
   "description": "o_O\"",
-  "main": "index.js",
+  "main": "trade.js",
   "scripts": {
     "hotbuild": "./node_modules/.bin/webpack --progress --debug --watch --config webpack.config.js --display-chunks",
-    "start": "node bundle/app.bundle.js",
+    "trade": "node bundle/trade.bundle.js",
     "sync": "node bundle/sync.bundle.js",
     "history": "node bundle/history.bundle.js",
-    "cashout": "node bundle/cashout.bundle.js",
-    "currency": "node bundle/currency.bundle.js",
+    "withdraw": "node bundle/withdraw.bundle.js",
     "server": "node bundle/server.bundle.js"
   },
   "repository": {

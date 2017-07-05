@@ -1,6 +1,6 @@
 var workers = [];
-for (var x = 0; x < 10; x++) {
-  var worker = {
+for (let x = 0; x < 10; x++) {
+  let worker = {
     needInit: true,
     cashAssets: 0, //JPY
     virtualAssets: 0, //BTC

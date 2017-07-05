@@ -2,14 +2,16 @@ import {
   callApi
 } from './apiCaller.js';
 import {
+  now
+} from './date.js';
+import {
   currencyCode,
-  currency,
   getCurrencyBasedOn
 } from './currency.js';
 
 export {
   callApi,
+  now,
   currencyCode,
-  currency,
   getCurrencyBasedOn
 };

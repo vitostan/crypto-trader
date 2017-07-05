@@ -1,11 +1,9 @@
 import {
-  autoSyncAssets,
   manualSyncAssets
-} from './assetsSynchronizer.js';
+} from './assetsSync.js';
 import assets from './assets.js';
 
 export {
-  assents,
-  autoSyncAssets,
+  assets,
   manualSyncAssets
 };

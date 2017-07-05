@@ -3,7 +3,7 @@ import {
   monitorRealtimePrice
 } from './feature/trade';
 
-function main() {
+function trade() {
   try {
     monitorRealtimePrice();
   } catch (e) {
@@ -11,4 +11,4 @@ function main() {
   }
 }
 
-main();
+trade();
