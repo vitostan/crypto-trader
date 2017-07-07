@@ -1,11 +1,14 @@
 import {
   autoTrade,
-  monitorRealtimePrice
+  monitorRealtimePrice,
+  manualTrade
 } from './feature/trade';
 
 function trade() {
   try {
-    monitorRealtimePrice();
+    let ethAmount = 0.5;
+    // monitorRealtimePrice();
+    manualTrade(ethAmount);
   } catch (e) {
     console.log('exception = ', e);
   }

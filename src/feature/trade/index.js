@@ -1,10 +1,13 @@
-import autoTrade from './autoTrader.js';
 import {
   monitorRealtimePrice
-}
-from './marketBoard.js';
+} from './marketBoard.js';
+import {
+  autoTrade,
+  manualTrade
+} from './autoTrader.js';
 
 export {
   autoTrade,
-  monitorRealtimePrice
+  monitorRealtimePrice,
+  manualTrade
 };

@@ -8,10 +8,10 @@ import {
   SECRET
 } from './apiProfile.js';
 
-export async function callApi(apiAction, queryString, body) {
+export async function callApi(apiAction, queryString, bodyJSObj) {
   let requestParam;
-  if (body && body.length > 0) {
-    requestParam = buildPostRequestParam(apiAction, body);
+  if (bodyJSObj) {
+    requestParam = buildPostRequestParam(apiAction, bodyJSObj);
   } else {
     requestParam = buildGetRequestParam(apiAction, queryString);
   }
@@ -26,14 +26,12 @@ function buildGetRequestParam(apiAction, queryString) {
   };
 }
 
-function buildPostRequestParam(apiAction, body) {
-  let tmp = HOST + apiAction;
-  console.log('url = ', tmp);
+function buildPostRequestParam(apiAction, bodyJSObj) {
+  let body = JSON.stringify(bodyJSObj);
   return {
     url: HOST + apiAction,
     method: 'POST',
     headers: getReqHeaderByAuth(KEY, SECRET, 'POST', apiAction, body),
-    body: body,
-    json: true
+    body: body
   };
 }
