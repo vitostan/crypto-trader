@@ -1,6 +1,5 @@
 import moment from 'moment-timezone';
 
 export function now() {
-  let datetime = new Date();
-  return moment(datetime).tz('Asia/Tokyo').format('YYYY-MM-DD HH:mm:ss(z)');
+  return moment(new Date()).tz('Asia/Tokyo').format('YYYY-MM-DD HH:mm:ss(z)');
 }
