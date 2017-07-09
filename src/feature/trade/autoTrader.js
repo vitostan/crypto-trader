@@ -18,22 +18,23 @@ export function autoTrade() {
   let checkTradingConditionTimer = setInterval(trade, 1000);
 }
 
-export async function manualTrade(ethAmount) {
-  let ethTickerStr = await callApi(GET_TICKER, {
-    product_code: 'ETH_BTC'
+export async function manualTrade(amount, marketCode) {
+  let tickerStr = await callApi(GET_TICKER, {
+    product_code: marketCode
   })
-  let ethTicker = JSON.parse(ethTickerStr);
-  let ethPrice = ethTicker.ltp.toFixed(5);
+  let ticker = JSON.parse(tickerStr);
+  let price = ticker.ltp.toFixed(5);
   let body = {
-    product_code: "ETH_BTC",
-    child_order_type: "LIMIT",
-    side: "BUY",
-    price: ethPrice,
-    size: ethAmount * 1.0,
+    product_code: marketCode,
+    child_order_type: 'LIMIT',
+    side: 'BUY',
+    price: price,
+    size: amount * 1.0,
     minute_to_expire: 1000
   };
   let tradeResult = await callApi(SEND_CHILD_ORDER, '', body);
   console.log('trade result:' + tradeResult);
+  return tradeResult;
 }
 
 async function trade() {
@@ -42,14 +43,14 @@ async function trade() {
       initWorker(worker);
     }
     if (checkTradingCondition(worker)) {
-      manualTrade();
+
     }
   }
 }
 
-async function checkTradingCondition(worker) {
+async function checkTradingCondition(worker, marketCode) {
   let tickerString = await callApi(GET_TICKER, {
-    product_code: 'BTC_JPY'
+    product_code: marketCode
   });
   let ticker = JSON.parse(tickerString);
   if (ticker.ltp >= worker.buyingPrice * (1 + worker.feeRatio + GAIN_PROFIT_RATIO))

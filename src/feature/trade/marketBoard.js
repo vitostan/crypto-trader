@@ -8,6 +8,7 @@ import {
 import {
   GET_TICKER
 } from './apiAction.js';
+import MARKET_CODE from './marketCode.js';
 
 export function monitorRealtimePrice() {
   let getLastTradePriceInterval = setInterval(getLastTradePrice, 10000);
@@ -15,11 +16,11 @@ export function monitorRealtimePrice() {
 
 async function getLastTradePrice() {
   let btcTickerStr = await callApi(GET_TICKER, {
-    product_code: 'BTC_JPY'
+    product_code: MARKET_CODE.BTC_JPY
   });
   let btcTicker = JSON.parse(btcTickerStr);
   let ethTickerStr = await callApi(GET_TICKER, {
-    product_code: 'ETH_BTC'
+    product_code: MARKET_CODE.ETH_BTC
   })
   let ethTicker = JSON.parse(ethTickerStr);
   let time = now();

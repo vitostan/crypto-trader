@@ -1,17 +1,12 @@
 import {
-  withdraw as withdraw_,
-  bankAccountId
+  withdraw as withdraw_
 } from './feature/withdraw';
 
-function withdraw() {
+async function withdraw() {
   try {
-    let withdrawDetail = {
-      currency_code: "JPY",
-      bank_account_id: bankAccountId.seven,
-      amount: 20000
-    };
-    //withdraw_(withdrawDetail);
-    console.log('withdraw');
+    let amount = 20000;
+    // let withdrawResult = await withdraw_(amount);
+    // console.log('withdraw result: ', withdrawResult);
   } catch (e) {
     console.log('exception = ', e);
   }

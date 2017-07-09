@@ -4,18 +4,23 @@ import {
 import {
   GET_BALANCE
 } from './apiAction.js';
-import assets from './assets.js';
 
 export async function manualSyncAssets() {
-  await syncAssets();
+  return await syncAssets();
 }
 
 async function syncAssets() {
   let balanceString = await callApi(GET_BALANCE);
   let balance = JSON.parse(balanceString);
+  let assets = {
+    JPY: 0,
+    BTC: 0,
+    ETH: 0
+  };
   for (let subBalance of balance) {
     fetchBalance(subBalance, assets);
   }
+  return assets;
 }
 
 function fetchBalance(subBalance, assets) {
