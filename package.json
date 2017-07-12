@@ -9,7 +9,8 @@
     "sync": "node bundle/sync.bundle.js",
     "history": "node bundle/history.bundle.js",
     "withdraw": "node bundle/withdraw.bundle.js",
-    "server": "node bundle/server.bundle.js"
+    "server": "node bundle/server.bundle.js",
+    "price": "node bundle/price.bundle.js"
   },
   "repository": {
     "type": "git",

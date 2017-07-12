@@ -8,8 +8,10 @@ import {
 import {
   cancelTrade
 } from './cancelTrade.js';
+import MARKET_CODE from './marketCode.js';
 
 export {
+  MARKET_CODE,
   autoTrade,
   monitorRealtimePrice,
   manualTrade,

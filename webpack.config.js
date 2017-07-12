@@ -6,7 +6,8 @@ module.exports = {
     sync: './src/sync.js',
     history: './src/history.js',
     withdraw: './src/withdraw.js',
-    server: './src/server.js'
+    server: './src/server.js',
+    price: './src/price.js'
   },
   output: {
     filename: '[name].bundle.js',
