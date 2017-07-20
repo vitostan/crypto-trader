@@ -6,7 +6,10 @@ import notifier from 'node-notifier';
 function price() {
   try {
     monitorRealtimePrice();
-    notifier.notify('Strat monitoring market price');
+    notifier.notify({
+      message: 'Strat monitoring market price',
+      timeout: 3
+    });
   } catch (e) {
     console.log('exception = ', e);
   }

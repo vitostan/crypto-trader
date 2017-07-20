@@ -36,8 +36,9 @@ async function getLastTradePrice() {
   if (btcTicker.ltp > 265000 || btcTicker.ltp < 260000) {
     if (notifyFlag < 3)
       notifier.notify({
-        'title': 'Price Alert',
-        'message': 'Price now is' + btcTicker.ltp
+        title: 'Price Alert',
+        message: 'Price now is' + btcTicker.ltp,
+        timeout: 3
       });
     notifyFlag = notifyFlag > 9 ? 0 : notifyFlag + 1;
   }
