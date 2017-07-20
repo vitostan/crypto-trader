@@ -13,23 +13,25 @@ import workers from './workers.js';
 import {
   GAIN_PROFIT_RATIO
 } from './tradeConfig.js';
+import TRADE_DIRECTION from './tradeDirection.js';
 
 export function autoTrade() {
   let checkTradingConditionTimer = setInterval(trade, 1000);
 }
 
-export async function manualTrade(cashAmount, marketCode) {
+export async function manualTrade(amount, tradeDirection, marketCode) {
   let tickerStr = await callApi(GET_TICKER, {
     product_code: marketCode
   })
   let ticker = JSON.parse(tickerStr);
   let price = ticker.ltp.toFixed(5);
-  let coinAmount = (cashAmount * 1.0 / price).toFixed(4);
+  let coinAmount = tradeDirection === TRADE_DIRECTION.BUY ?
+    (amount * 1.0 / price).toFixed(4) : amount * 0.9986;
   console.log('coinAmount = ', coinAmount);
   let body = {
     product_code: marketCode,
     child_order_type: 'LIMIT',
-    side: 'BUY',
+    side: tradeDirection,
     price: price,
     size: coinAmount * 1.0,
     minute_to_expire: 1000

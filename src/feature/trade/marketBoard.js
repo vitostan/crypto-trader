@@ -33,7 +33,7 @@ async function getLastTradePrice() {
   console.log('1 ETH = ' + ethTicker.ltp.toFixed(6) + ' BTC');
   console.log('1 ETH = ' + (ethTicker.ltp * btcTicker.ltp).toFixed(0) + ' JPY = ' + (ethTicker.ltp * btcTicker.ltp * currency.rates.CNY * 1.02).toFixed(2) + ' CNY (currency = ' + currency.rates.CNY * 100 + ')');
   console.log('--------------------------\n');
-  if (btcTicker.ltp > 265000 || btcTicker.ltp < 260000) {
+  if (btcTicker.ltp > 285000 || btcTicker.ltp < 265000) {
     if (notifyFlag < 3)
       notifier.notify({
         title: 'Price Alert',
