@@ -25,5 +25,9 @@ module.exports = {
       }
     }]
   },
-  target: 'async-node'
+  target: 'async-node',
+  node: {
+    __filename: true,
+    __dirname: true
+  }
 };
