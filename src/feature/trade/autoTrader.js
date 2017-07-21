@@ -26,7 +26,7 @@ export async function manualTrade(amount, tradeDirection, marketCode) {
   let ticker = JSON.parse(tickerStr);
   let price = ticker.ltp.toFixed(5);
   let coinAmount = tradeDirection === TRADE_DIRECTION.BUY ?
-    (amount * 1.0 / price).toFixed(4) : amount * 0.9986;
+    (amount * 1.0 / price).toFixed(4) : (amount * 0.9986).toFixed(6);
   console.log('coinAmount = ', coinAmount);
   let body = {
     product_code: marketCode,
