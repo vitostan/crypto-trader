@@ -15,10 +15,6 @@ import {
 } from './tradeConfig.js';
 import TRADE_DIRECTION from './tradeDirection.js';
 
-export function autoTrade() {
-  let checkTradingConditionTimer = setInterval(trade, 1000);
-}
-
 export async function manualTrade(amount, tradeDirection, marketCode) {
   let tickerStr = await callApi(GET_TICKER, {
     product_code: marketCode
@@ -41,34 +37,77 @@ export async function manualTrade(amount, tradeDirection, marketCode) {
   return tradeResult;
 }
 
+export async function autoTrade() {
+  let checkTradingConditionTimer = setInterval(await trade, 30000);
+}
+
 async function trade() {
-  for (let worker of workers) {
-    if (worker.needInit) {
-      initWorker(worker);
+  for (let [index, worker] of workers) {
+    let tickerStr = await callApi(GET_TICKER, {
+      product_code: worker.marketCode
+    });
+    let ticker = JSON.parse(tickerStr);
+    let price = ticker.ltp.toFixed(6);
+    console.log('index = ', index);
+    if (((worker.tradeDirection === TRADE_DIRECTION.BUY) && canBuy(worker, price)) || worker.needInit) {
+      let boughtCoinWorker = await workerTrade(worker, price); //buy coins
+      workers[index] = boughtCoinWorker;
+      await new Promise(resolve => setTimeout(resolve, 10000)); //sleep 5 mins, return
+      return;
     }
-    if (checkTradingCondition(worker)) {
-
+    if ((worker.tradeDirection === TRADE_DIRECTION.SELL) && canSell(worker, price)) { //if holding coins and can sell
+      let soldCoinWorker = await workerTrade(worker, price); //sell coins and return
+      workers[index] = soldCoinWorker;
+      return;
     }
   }
 }
 
-async function checkTradingCondition(worker, marketCode) {
-  let tickerString = await callApi(GET_TICKER, {
-    product_code: marketCode
-  });
-  let ticker = JSON.parse(tickerString);
-  if (ticker.ltp >= worker.buyingPrice * (1 + worker.feeRatio + GAIN_PROFIT_RATIO))
-    return true;
-  return false;
+async function workerTrade(worker, price) {
+  let coinAmount = worker.tradeDirection === TRADE_DIRECTION.BUY ?
+    (worker.cashAmount * 1.0 / price).toFixed(6) : //buy
+    (worker.coinAmount * 0.9986).toFixed(6); //sell
+  let body = {
+    product_code: worker.marketCode,
+    child_order_type: 'LIMIT',
+    side: worker.tradeDirection,
+    price: price,
+    size: coinAmount * 1.0,
+    minute_to_expire: 1000
+  };
+  let tradeResult = await callApi(SEND_CHILD_ORDER, '', body);
+  if (tradeResult.child_order_acceptance_id) {
+    if (worker.tradeDirection === TRADE_DIRECTION.BUY) {
+      return {
+        needInit: false,
+        tradeDirection: TRADE_DIRECTION.SELL,
+        cashAmount: 0,
+        coinAmount: coinAmount,
+        buyingPrice: price,
+        sellingPrice: worker.sellingPrice,
+        profitAmount: 2000,
+        marketCode: MARKET_CODE.BTC_JPY
+      };
+    } else {
+      return {
+        needInit: false,
+        tradeDirection: TRADE_DIRECTION.BUY,
+        cashAmount: 5000,
+        coinAmount: 0,
+        buyingPrice: worker.buyingPrice,
+        sellingPrice: price,
+        profitAmount: 2000,
+        marketCode: MARKET_CODE.BTC_JPY
+      };
+    }
+  }
+  return worker;
 }
 
-function initWorker(worker) {
-  worker = {
-    needInit: false,
-    cashAssets: 5000, //JPY/CNY
-    virtualAssets: 0, //BTC/ETH
-    buyingPrice: 0, //
-    sellingPrice: 0,
-    feeRatio: 0.15 / 100
-  }
+function canBuy(worker, price) {
+  return worker.profitAmount <= (worker.sellingPrice - price);
+}
+
+function canSell(worker, price) {
+  return worker.profitAmount <= (price - worker.buyingPrice);
 }

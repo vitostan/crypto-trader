@@ -1,13 +1,17 @@
+import MARKET_CODE from './marketCode.js';
+import TRADE_DIRECTION from './tradeDirection.js';
+
 var workers = [];
-for (let x = 0; x < 10; x++) {
+for (let x = 0; x < 2; x++) {
   let worker = {
     needInit: true,
-    cashAssets: 0, //JPY
-    virtualAssets: 0, //BTC
+    tradeDirection: TRADE_DIRECTION.BUY,
+    cashAmount: 5000,
+    coinAmount: 0,
     buyingPrice: 0,
-    buyingAmount: 0, //BTC
     sellingPrice: 0,
-    sellingAmount: 0 //BTC
+    profitAmount: 2000,
+    marketCode: MARKET_CODE.BTC_JPY
   }
   workers.push(worker);
 }
