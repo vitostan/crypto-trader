@@ -4,8 +4,8 @@ import {
 } from './apiAuth.js';
 import {
   HOST,
-  KEY,
-  SECRET
+  KEY_BITFLYER,
+  SECRET_BITFLYER
 } from './apiProfile.js';
 
 export async function callApi(apiAction, queryString, bodyJSObj) {
@@ -21,7 +21,7 @@ export async function callApi(apiAction, queryString, bodyJSObj) {
 function buildGetRequestParam(apiAction, queryString) {
   return {
     url: HOST + apiAction,
-    headers: getReqHeaderByAuth(KEY, SECRET, 'GET', apiAction, ''),
+    headers: getReqHeaderByAuth(KEY_BITFLYER, SECRET_BITFLYER, 'GET', apiAction, ''),
     qs: queryString
   };
 }
@@ -31,7 +31,7 @@ function buildPostRequestParam(apiAction, bodyJSObj) {
   return {
     url: HOST + apiAction,
     method: 'POST',
-    headers: getReqHeaderByAuth(KEY, SECRET, 'POST', apiAction, body),
+    headers: getReqHeaderByAuth(KEY_BITFLYER, SECRET_BITFLYER, 'POST', apiAction, body),
     body: body
   };
 }

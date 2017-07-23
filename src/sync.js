@@ -12,6 +12,7 @@ async function sync() {
     console.log('assets.JPY = ', assets.JPY);
     console.log('assets.BTC = ', assets.BTC);
     console.log('assets.ETH = ', assets.ETH);
+    console.log('assets.LTC = ', assets.LTC);
     console.log('---------------------------');
   } catch (e) {
     console.log('exception = ', e);
