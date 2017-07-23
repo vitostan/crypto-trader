@@ -1,6 +1,6 @@
 export const HOST = 'https://api.bitflyer.jp';
-export const KEY = 'SRuasFmzd3a2RwK4HtZhZW';
-export const SECRET = 'ob0K0iEvt+RJM4F4qUCrPL6zFdqaQPJagJ7WD9ej64s=';
+export const KEY = '{yourKey}';
+export const SECRET = '{yourSecret}';
 
 export const HOST_HUOBI = 'https://be.huobi.com';
 export const KEY_HUOBI = '2a88f863-50c6748a-c4b16d97-fb26d';
