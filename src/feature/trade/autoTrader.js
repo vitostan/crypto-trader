@@ -1,6 +1,7 @@
 import moment from 'moment-timezone';
 import {
-  callApi
+  callApi,
+  now
 } from '../../util';
 import {
   assets
@@ -38,26 +39,29 @@ export async function manualTrade(amount, tradeDirection, marketCode) {
 }
 
 export async function autoTrade() {
-  let checkTradingConditionTimer = setInterval(await trade, 30000);
+  // let checkTradingConditionTimer = setInterval(trade, 10000);
+  await trade();
 }
 
 async function trade() {
-  for (let [index, worker] of workers) {
+  let index = 0;
+  for (let worker of workers) {
     let tickerStr = await callApi(GET_TICKER, {
       product_code: worker.marketCode
     });
     let ticker = JSON.parse(tickerStr);
     let price = ticker.ltp.toFixed(6);
-    console.log('index = ', index);
     if (((worker.tradeDirection === TRADE_DIRECTION.BUY) && canBuy(worker, price)) || worker.needInit) {
       let boughtCoinWorker = await workerTrade(worker, price); //buy coins
       workers[index] = boughtCoinWorker;
-      await new Promise(resolve => setTimeout(resolve, 10000)); //sleep 5 mins, return
+      await new Promise(resolve => setTimeout(resolve, 5000)); //sleep 5 mins, return
+      index++;
       return;
     }
     if ((worker.tradeDirection === TRADE_DIRECTION.SELL) && canSell(worker, price)) { //if holding coins and can sell
       let soldCoinWorker = await workerTrade(worker, price); //sell coins and return
       workers[index] = soldCoinWorker;
+      index++;
       return;
     }
   }
@@ -76,6 +80,9 @@ async function workerTrade(worker, price) {
     minute_to_expire: 1000
   };
   let tradeResult = await callApi(SEND_CHILD_ORDER, '', body);
+  console.log('time: ' + now());
+  console.log('worker tradeResult = ' + tradeResult);
+  console.log('-------------------------------');
   if (tradeResult.child_order_acceptance_id) {
     if (worker.tradeDirection === TRADE_DIRECTION.BUY) {
       return {

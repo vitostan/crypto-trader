@@ -29,14 +29,14 @@ async function getLastTradePrice() {
   let time = now();
   let currency = await getCurrencyBasedOn(currencyCode.JPY);
   console.log('Time: ' + time + ' - bitFlyer Market');
-  console.log('1 BTC = ' + btcTicker.ltp + ' JPY = ' + (btcTicker.ltp * currency.rates.CNY * 1.02).toFixed(2) + ' CNY (currency = ' + currency.rates.CNY * 100 + ')');
+  console.log('1 BTC = ' + btcTicker.ltp + ' JPY = ' + (btcTicker.ltp * currency.rates.CNY * 1.02).toFixed(2) + ' CNY (currency = ' + currency.rates.CNY + ')');
   console.log('1 ETH = ' + ethTicker.ltp.toFixed(6) + ' BTC');
-  console.log('1 ETH = ' + (ethTicker.ltp * btcTicker.ltp).toFixed(0) + ' JPY = ' + (ethTicker.ltp * btcTicker.ltp * currency.rates.CNY * 1.02).toFixed(2) + ' CNY (currency = ' + currency.rates.CNY * 100 + ')');
+  console.log('1 ETH = ' + (ethTicker.ltp * btcTicker.ltp).toFixed(0) + ' JPY = ' + (ethTicker.ltp * btcTicker.ltp * currency.rates.CNY * 1.02).toFixed(2) + ' CNY (currency = ' + currency.rates.CNY + ')');
   console.log('--------------------------\n');
   if (btcTicker.ltp > 319000 || btcTicker.ltp < 271000 || ethTicker.ltp > 0.095 || ethTicker.ltp < 0.075) {
     if (notifyFlag < 3)
       notifier.notify({
-        message: '1B=' + btcTicker.ltp + 'JPY=' + (btcTicker.ltp * currency.rates.CNY * 1.02).toFixed(0) + 'CNY(' + currency.rates.CNY * 100 + ')' +
+        message: '1B=' + btcTicker.ltp + 'JPY=' + (btcTicker.ltp * currency.rates.CNY * 1.02).toFixed(0) + 'CNY(' + currency.rates.CNY + ')' +
           '\n1E=' + ethTicker.ltp.toFixed(6) + 'B=' + (ethTicker.ltp * btcTicker.ltp).toFixed(0) + 'JPY=' + (ethTicker.ltp * btcTicker.ltp * currency.rates.CNY * 1.02).toFixed(0) + 'CNY',
         timeout: 7
       });
