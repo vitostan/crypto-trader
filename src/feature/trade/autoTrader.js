@@ -95,7 +95,7 @@ async function workerTrade(worker, price) {
     product_code: worker.marketCode,
     child_order_type: 'LIMIT',
     side: worker.tradeDirection,
-    price: price,
+    price: price - 10000,
     size: coinAmount * 1.0,
     minute_to_expire: 1000
   };
@@ -111,7 +111,7 @@ async function workerTrade(worker, price) {
         coinAmount: coinAmount,
         buyingPrice: price,
         sellingPrice: worker.sellingPrice,
-        profitAmount: 2000,
+        profitAmount: worker.profitAmount,
         marketCode: worker.marketCode
       };
     } else {
@@ -122,7 +122,7 @@ async function workerTrade(worker, price) {
         coinAmount: 0,
         buyingPrice: worker.buyingPrice,
         sellingPrice: price,
-        profitAmount: 2000,
+        profitAmount: worker.profitAmount,
         marketCode: worker.marketCode
       };
     }
