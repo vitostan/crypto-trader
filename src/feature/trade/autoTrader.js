@@ -10,7 +10,9 @@ import {
   GET_TICKER,
   SEND_CHILD_ORDER
 } from './apiAction.js';
-import workers from './workers.js';
+import {
+  btcjpyWorkers as workers
+} from './workers.js';
 import {
   GAIN_PROFIT_RATIO
 } from './tradeConfig.js';
@@ -39,7 +41,7 @@ export async function manualTrade(amount, tradeDirection, marketCode) {
 }
 
 export async function autoTrade() {
-  let checkTradingConditionTimer = setInterval(await trade, 15000);
+  let checkTradingConditionTimer = setInterval(await trade, 10000);
   // await test();
   // await trade();
 }
@@ -54,7 +56,7 @@ async function test() {
       coinAmount: worker.coinAmount + 1,
       buyingPrice: 0,
       sellingPrice: 0,
-      profitAmount: 2000,
+      profitAmount: 3000,
       marketCode: 'BTC_JPY'
     };
     workers[index] = newWorker;
@@ -73,16 +75,16 @@ async function trade() {
     let ticker = JSON.parse(tickerStr);
     let price = ticker.ltp.toFixed(6);
     if (((worker.tradeDirection === TRADE_DIRECTION.BUY) && canBuy(worker, price)) || worker.needInit) {
-      let boughtCoinWorker = await workerTrade(worker, price); //buy coins
+      let boughtCoinWorker = await workerTrade(worker, price - 10000); //buy coins
       workers[index] = boughtCoinWorker;
       console.log('@' + now() + 'buy coins, workers[' + index + '] = ' + JSON.stringify(workers[index], null, 4));
-      await new Promise(resolve => setTimeout(resolve, 7000)); //sleep 5 mins, return
+      await new Promise(resolve => setTimeout(resolve, 5000)); //sleep 5 mins, return
     } else if ((worker.tradeDirection === TRADE_DIRECTION.SELL) && canSell(worker, price)) { //if holding coins and can sell
       let soldCoinWorker = await workerTrade(worker, price); //sell coins and return
       workers[index] = soldCoinWorker;
       console.log('@' + now() + 'sell coins, workers[' + index + '] = ' + JSON.stringify(workers[index], null, 4));
     }
-    console.log('Worker[' + index + '] waiting 4 selling...@' + now());
+    console.log('Worker[' + index + '] waiting 4 ' + workers[index].tradeDirection + '...@' + now());
     index++;
   }
 }
@@ -95,7 +97,7 @@ async function workerTrade(worker, price) {
     product_code: worker.marketCode,
     child_order_type: 'LIMIT',
     side: worker.tradeDirection,
-    price: price - 10000,
+    price: price,
     size: coinAmount * 1.0,
     minute_to_expire: 1000
   };
@@ -118,7 +120,7 @@ async function workerTrade(worker, price) {
       return {
         needInit: false,
         tradeDirection: TRADE_DIRECTION.BUY,
-        cashAmount: worker.cashAmount,
+        cashAmount: 5000,
         coinAmount: 0,
         buyingPrice: worker.buyingPrice,
         sellingPrice: price,
