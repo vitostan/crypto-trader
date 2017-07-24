@@ -10,7 +10,7 @@ for (let x = 0; x < 2; x++) {
     coinAmount: 0,
     buyingPrice: 0,
     sellingPrice: 0,
-    profitAmount: 2000,
+    profitAmount: 3000,
     marketCode: MARKET_CODE.BTC_JPY
   }
   workers.push(worker);

@@ -39,8 +39,29 @@ export async function manualTrade(amount, tradeDirection, marketCode) {
 }
 
 export async function autoTrade() {
-  // let checkTradingConditionTimer = setInterval(trade, 10000);
-  await trade();
+  let checkTradingConditionTimer = setInterval(await trade, 15000);
+  // await test();
+  // await trade();
+}
+
+async function test() {
+  let index = 0;
+  for (let worker of workers) {
+    let newWorker = {
+      needInit: true,
+      tradeDirection: TRADE_DIRECTION.BUY,
+      cashAmount: 5000,
+      coinAmount: worker.coinAmount + 1,
+      buyingPrice: 0,
+      sellingPrice: 0,
+      profitAmount: 2000,
+      marketCode: 'BTC_JPY'
+    };
+    workers[index] = newWorker;
+    console.log('workers[' + index + '].coinAmount = ' + workers[index].coinAmount);
+    index++;
+    await new Promise(resolve => setTimeout(resolve, 5000)); //sleep 5 mins, return
+  }
 }
 
 async function trade() {
@@ -54,16 +75,15 @@ async function trade() {
     if (((worker.tradeDirection === TRADE_DIRECTION.BUY) && canBuy(worker, price)) || worker.needInit) {
       let boughtCoinWorker = await workerTrade(worker, price); //buy coins
       workers[index] = boughtCoinWorker;
-      await new Promise(resolve => setTimeout(resolve, 5000)); //sleep 5 mins, return
-      index++;
-      return;
-    }
-    if ((worker.tradeDirection === TRADE_DIRECTION.SELL) && canSell(worker, price)) { //if holding coins and can sell
+      console.log('@' + now() + 'buy coins, workers[' + index + '] = ' + JSON.stringify(workers[index], null, 4));
+      await new Promise(resolve => setTimeout(resolve, 7000)); //sleep 5 mins, return
+    } else if ((worker.tradeDirection === TRADE_DIRECTION.SELL) && canSell(worker, price)) { //if holding coins and can sell
       let soldCoinWorker = await workerTrade(worker, price); //sell coins and return
       workers[index] = soldCoinWorker;
-      index++;
-      return;
+      console.log('@' + now() + 'sell coins, workers[' + index + '] = ' + JSON.stringify(workers[index], null, 4));
     }
+    console.log('Worker[' + index + '] waiting 4 selling...@' + now());
+    index++;
   }
 }
 
@@ -79,10 +99,9 @@ async function workerTrade(worker, price) {
     size: coinAmount * 1.0,
     minute_to_expire: 1000
   };
-  let tradeResult = await callApi(SEND_CHILD_ORDER, '', body);
-  console.log('time: ' + now());
-  console.log('worker tradeResult = ' + tradeResult);
-  console.log('-------------------------------');
+  let tradeResult = JSON.parse(await callApi(SEND_CHILD_ORDER, '', body));
+  // console.log('time: ' + now());
+  // console.log('worker tradeResult = ' + tradeResult);
   if (tradeResult.child_order_acceptance_id) {
     if (worker.tradeDirection === TRADE_DIRECTION.BUY) {
       return {
@@ -93,18 +112,18 @@ async function workerTrade(worker, price) {
         buyingPrice: price,
         sellingPrice: worker.sellingPrice,
         profitAmount: 2000,
-        marketCode: MARKET_CODE.BTC_JPY
+        marketCode: worker.marketCode
       };
     } else {
       return {
         needInit: false,
         tradeDirection: TRADE_DIRECTION.BUY,
-        cashAmount: 5000,
+        cashAmount: worker.cashAmount,
         coinAmount: 0,
         buyingPrice: worker.buyingPrice,
         sellingPrice: price,
         profitAmount: 2000,
-        marketCode: MARKET_CODE.BTC_JPY
+        marketCode: worker.marketCode
       };
     }
   }

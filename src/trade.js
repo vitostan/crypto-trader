@@ -8,8 +8,8 @@ import {
 
 async function trade() {
   try {
-    let tradeResult = manualTrade(0, TRADE_DIRECTION.SELL, MARKET_CODE.BTC_JPY);
-    // await autoTrade();
+    // let tradeResult = manualTrade(0, TRADE_DIRECTION.SELL, MARKET_CODE.BTC_JPY);
+    await autoTrade();
   } catch (e) {
     console.log('exception = ', e);
   }
