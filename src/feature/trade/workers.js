@@ -16,6 +16,8 @@ for (let x = 0; x < 2; x++) {
   btcjpyWorkers.push(worker);
 }
 
+export btcjpyWorkers;
+
 // var worker0 = {
 //   needInit: false,
 //   tradeDirection: TRADE_DIRECTION.BUY,
@@ -64,5 +66,3 @@ for (let x = 0; x < 2; x++) {
 // workers.push(worker1);
 // workers.push(worker2);
 // workers.push(worker3);
-
-export btcjpyWorkers;
