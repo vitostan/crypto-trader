@@ -2,7 +2,7 @@ import MARKET_CODE from './marketCode.js';
 import TRADE_DIRECTION from './tradeDirection.js';
 
 var btcjpyWorkers = [];
-for (let x = 0; x < 2; x++) {
+for (let x = 0; x < 3; x++) {
   let worker = {
     needInit: true,
     tradeDirection: TRADE_DIRECTION.BUY,

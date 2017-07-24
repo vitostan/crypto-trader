@@ -41,7 +41,7 @@ export async function manualTrade(amount, tradeDirection, marketCode) {
 }
 
 export async function autoTrade() {
-  let checkTradingConditionTimer = setInterval(await trade, 10000);
+  let checkTradingConditionTimer = setInterval(await trade, 15000);
   // await test();
   // await trade();
 }
@@ -75,7 +75,7 @@ async function trade() {
     let ticker = JSON.parse(tickerStr);
     let price = ticker.ltp.toFixed(6);
     if (((worker.tradeDirection === TRADE_DIRECTION.BUY) && canBuy(worker, price)) || worker.needInit) {
-      let boughtCoinWorker = await workerTrade(worker, price - 10000); //buy coins
+      let boughtCoinWorker = await workerTrade(worker, price - 5000); //buy coins
       workers[index] = boughtCoinWorker;
       console.log('@' + now() + 'buy coins, workers[' + index + '] = ' + JSON.stringify(workers[index], null, 4));
       await new Promise(resolve => setTimeout(resolve, 5000)); //sleep 5 mins, return
