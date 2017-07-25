@@ -16,7 +16,9 @@ for (let x = 0; x < 2; x++) {
   btcjpyWorkers.push(worker);
 }
 
-export btcjpyWorkers;
+export {
+  btcjpyWorkers
+};
 
 // var worker0 = {
 //   needInit: false,
