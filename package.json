@@ -10,7 +10,8 @@
     "history": "node bundle/history.bundle.js",
     "withdraw": "node bundle/withdraw.bundle.js",
     "server": "node bundle/server.bundle.js",
-    "price": "node bundle/price.bundle.js"
+    "price": "node bundle/price.bundle.js",
+    "poc": "node bundle/poc.bundle.js"
   },
   "repository": {
     "type": "git",

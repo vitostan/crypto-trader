@@ -7,7 +7,8 @@ module.exports = {
     history: './src/history.js',
     withdraw: './src/withdraw.js',
     server: './src/server.js',
-    price: './src/price.js'
+    price: './src/price.js',
+    poc: './src/poc.js'
   },
   output: {
     filename: '[name].bundle.js',
