@@ -2,6 +2,7 @@
 export const GET_MARKET_LIST = '/v1/getmarkets';
 export const GET_BOARD = '/v1/getboard';
 export const GET_TICKER = '/v1/getticker';
+export const GET_PRICE = '/v1/getprices';
 
 //private
 export const GET_CHILD_ORDERS = '/v1/me/getchildorders';
