@@ -10,3 +10,9 @@ if
 then sell: send sell order as ticker.best_ask * 0.01
 sync balance
 2.4generate report
+
+
+### arbitrage trading
+* check price differences between different exchanges
+* buy from lower asks and sell to higher bids
+* transfer assets back to maintain half-half balance
