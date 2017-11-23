@@ -34,7 +34,6 @@ async function getLastTradePrice() {
   let bchTicker = JSON.parse(bchTickerStr);
   let priceStr = await callApi(GET_PRICE);
   let price = JSON.parse(priceStr);
-  let monaPrice = price.filter(x => x.product_code === MARKET_CODE.MONA_JPY)[0];
   let time = now();
   let currency = await getCurrencyBasedOn(currencyCode.JPY);
   console.log('Time: ' + time + ' - bitFlyer Market');
@@ -43,12 +42,11 @@ async function getLastTradePrice() {
   console.log('1 ETH = ' + (ethTicker.ltp * btcTicker.ltp).toFixed(0) + ' JPY');
   console.log('1 BCH = ' + bchTicker.ltp.toFixed(6) + ' BTC');
   console.log('1 BCH = ' + (bchTicker.ltp * btcTicker.ltp).toFixed(0) + ' JPY');
-  console.log('1 MONA = ' + monaPrice.rate.toFixed(0) + ' JPY');
   console.log('--------------------------\n');
-  if (monaPrice.rate > 540 || monaPrice.rate < 200) {
+  if (parseFloat(ethTicker.ltp) > 0.053 || parseFloat(bchTicker.ltp) > 0.24) {
     if (notifyFlag < 3)
       notifier.notify({
-        message: '1 MONA = ' + monaPrice.rate.toFixed(0) + ' JPY',
+        message: '1 ETH = ' + ethTicker.ltp.toFixed(6) + ' BTC\n' + '1 BCH = ' + bchTicker.ltp.toFixed(6) + ' BTC',
         timeout: 7
       });
     notifyFlag = notifyFlag > 9 ? 0 : notifyFlag + 1;
