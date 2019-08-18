@@ -1,0 +1,1 @@
+export const GET_EXECUTIONS = '/v1/getexecutions';

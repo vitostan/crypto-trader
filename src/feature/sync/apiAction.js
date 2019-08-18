@@ -1,0 +1,1 @@
+export const GET_BALANCE = '/v1/me/getbalance';

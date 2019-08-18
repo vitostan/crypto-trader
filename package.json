@@ -2,19 +2,53 @@
   "name": "vitostan",
   "version": "1.0.0",
   "description": "o_O\"",
-  "main": "index.js",
+  "main": "trade.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "hotbuild": "./node_modules/.bin/webpack --progress --debug --watch --config webpack.config.js --display-chunks",
+    "trade": "node bundle/trade.bundle.js",
+    "sync": "node bundle/sync.bundle.js",
+    "history": "node bundle/history.bundle.js",
+    "withdraw": "node bundle/withdraw.bundle.js",
+    "server": "node bundle/server.bundle.js",
+    "price": "node bundle/price.bundle.js",
+    "poc": "node bundle/poc.bundle.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vitostan/vitostan.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "vitostan"
+  ],
+  "author": "Vitostan",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/vitostan/vitostan/issues"
   },
-  "homepage": "https://github.com/vitostan/vitostan#readme"
+  "homepage": "https://github.com/vitostan/vitostan#readme",
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "moment": "^2.18.1",
+    "moment-timezone": "^0.5.13",
+    "node-notifier": "^5.1.2",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.5.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2017": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "webpack": "^2.6.1"
+  },
+  "babel": {
+    "presets": [
+      "es2017"
+    ]
+  }
 }

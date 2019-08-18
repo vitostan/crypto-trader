@@ -1,0 +1,5 @@
+export const REQ_TYPE = {
+  PUB_GET: 'PUBLIC_GET',
+  PVT_GET: 'PRIVATE_GET',
+  PVT_POST: 'PRIVATE_POST'
+};
