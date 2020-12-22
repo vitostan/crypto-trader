@@ -30,7 +30,7 @@
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "moment-timezone": "^0.5.13",
-    "node-notifier": "^5.1.2",
+    "node-notifier": "^8.0.1",
     "request": "^2.81.0",
     "request-promise": "^4.2.1"
   },
