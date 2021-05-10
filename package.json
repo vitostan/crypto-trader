@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/vitostan/vitostan#readme",
   "dependencies": {
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.21",
     "moment": "^2.18.1",
     "moment-timezone": "^0.5.13",
     "node-notifier": "^5.1.2",
